@@ -1,3 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 header {
-  background-color: aqua;
+  text-align: center;
+  padding: 20px;
+  background-color: rgb(239, 239, 239);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.sidebar, .tasks {
+  padding: 20px;
 }
