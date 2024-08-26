@@ -1,9 +1,9 @@
-import Task from "./modules/todo-item";
+import Task from "./modules/task";
+import List from "./modules/list";
 
-const title = "hey";
-const date = 45;
-const priority = "so high";
-const notes = "no notes";
+const newList = new List("project 1", "the best project to ever exist")
+console.log(newList);
+const newTask = new Task("title", "date", "priority", "note")
+newList.tasks.push(newTask);
+console.log(newList);
 
-const task = new Task(title, date, priority, notes);
-console.log(task);
