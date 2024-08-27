@@ -16,29 +16,47 @@ const displayLists = (array) => {
 };
 
 const clearTasks = ()=> {
-  document.getElementById("lists").innerHTML = "";
+  document.getElementById("tasks").innerHTML = "";
 };
 
 const displayTasks = (array) => {
-  array.forEach((i) => {
+  array.forEach((element) => {
     const newTask = document.createElement("div");
-    newTask.setAttribute("class", "task-tile");
-    newTask.setAttribute("id", `task-${i}`);
+    // newTask.setAttribute("class", "task-tile");
+    // newTask.setAttribute("id", `task-${i}`);
     document.getElementById("tasks").appendChild(newTask);
-    newTask.addEventListener("click", (event) => {
+    // newTask.addEventListener("click", (event) => {
       // GamePlay.processMove(event.target);
-    });
+    // });
   });
 };
 
-const openDialog = () => {
-  const dialog = document.getElementById("dialog")
+const openListDialog = () => {
+  const dialog = document.getElementById("listDialog")
   dialog.showModal()
 };
 
-const closeDialog = () => {
-  const closeDialog = document.getElementById("dialog")
+const closeListDialog = () => {
+  const closeDialog = document.getElementById("listDialog")
   closeDialog.close()
 };
 
-export { clearLists, displayLists, clearTasks, displayTasks, openDialog, closeDialog };
+const openTaskDialog = () => {
+  const dialog = document.getElementById("taskDialog")
+  dialog.showModal()
+};
+
+const closeTaskDialog = () => {
+  const closeDialog = document.getElementById("taskDialog")
+  closeDialog.close()
+};
+
+export { clearLists,
+         displayLists,
+         clearTasks,
+         displayTasks,
+         openListDialog,
+         closeListDialog,
+         openTaskDialog,
+         closeTaskDialog,
+};
