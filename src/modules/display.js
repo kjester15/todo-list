@@ -52,7 +52,6 @@ const closeTaskDialog = () => {
 };
 
 const displayListTasks = (list) => {
-  console.log(list)
   document.getElementById("list-name").innerHTML=`${list.title}`;
   document.getElementById("list-description").innerHTML=`${list.description}`;
   const taskDiv = document.createElement('div');
