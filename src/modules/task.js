@@ -1,4 +1,4 @@
-export default class Task {
+export class Task {
   constructor(title, date, priority, note) {
     this.title = title;
     this.date = date;
@@ -6,3 +6,8 @@ export default class Task {
     this.note = note;
   }
 }
+
+export const addTask = (list, task) => {
+  const newTask = new Task(task.title, task.description);
+  list.tasks.push(newTask);
+};
