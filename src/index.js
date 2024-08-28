@@ -1,16 +1,21 @@
-import { addTask } from "./modules/task";
-import { addList } from "./modules/list";
+import { task } from "./modules/task";
+import { list } from "./modules/list";
 import User from "./modules/user";
-import { clearLists, displayLists, openListDialog, closeListDialog } from "./modules/display";
+import { display } from "./modules/display";
 import './style.css';
 
-document.getElementById('closeList').addEventListener("click", closeListDialog);
+document.getElementById('closeList').addEventListener("click", display.closeListDialog);
 
 const user = new User;
 
 let newList = document.getElementById("new-list");
 newList.addEventListener("click", function() {
-  openListDialog();
+  display.openListDialog();
+});
+
+let newTask = document.getElementById("new-task");
+newTask.addEventListener("click", function() {
+  display.openTaskDialog();
 });
 
 // Handle new list form
@@ -21,14 +26,14 @@ listForm.addEventListener("submit", (event) => {
 });
 
 listForm.addEventListener("formdata", (event) => {
-  const list = {}
+  const newList = {}
   const data = event.formData;
-  data.forEach((value, key) => (list[`${key}`] = value))
-  addList(user, list)
+  data.forEach((value, key) => (newList[`${key}`] = value))
+  list.addList(user, newList)
   listForm.reset();
-  closeListDialog();
-  clearLists();
-  displayLists(user.lists);
+  display.closeListDialog();
+  display.clearLists();
+  display.displayLists(user.lists);
 });
 
 // Handle new task form
@@ -45,7 +50,7 @@ taskForm.addEventListener("formdata", (event) => {
   // TODO: need to figure out how to feed appropriate list below
   // addTask(user.lists[], task)
   taskForm.reset();
-  closeTaskDialog();
-  clearTasks();
-  // displayTasks(user.lists[].tasks);
+  display.closeTaskDialog();
+  display.clearTasks();
+  // display.displayTasks(user.lists[].tasks);
 });
