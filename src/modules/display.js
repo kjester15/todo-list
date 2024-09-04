@@ -12,6 +12,7 @@ export const display = (function () {
       // newList.setAttribute("class", "list-name");
       document.getElementById("lists").appendChild(newList);
       newList.addEventListener("click", () => {
+        clearListDetail();
         displayListDetail(element);
         observable.notify(element);
       });
@@ -59,28 +60,16 @@ export const display = (function () {
     closeDialog.close()
   };
 
+  const clearListDetail = () => {
+    document.getElementById("list-name").innerHTML='';
+    document.getElementById("list-description").innerHTML='';
+    document.getElementById("tasks").innerHTML='';
+  }
+
   const displayListDetail = (list) => {
     document.getElementById("list-name").innerHTML=`${list.title}`;
     document.getElementById("list-description").innerHTML=`${list.description}`;
-
-    // const header = document.getElementById("tasks-header")
-    // const newTaskButton = document.createElement('button');
-    // newTaskButton.innerHTML = 'New Task';
-    // newTaskButton.addEventListener("click", function() {
-    //   display.openTaskDialog(list);
-    // });
-    // header.appendChild(newTaskButton);
-
-    const taskDiv = document.createElement('div');
-    list.tasks.forEach((task) => {
-      const taskTitle = document.createElement('h4');
-      taskTitle.innerHTML = `${task.title}`;
-      taskDiv.appendChild(taskTitle);
-      const taskDesc = document.createElement('h5');
-      taskDesc.innerHTML = `${task.description}`;
-      taskDiv.appendChild(taskDesc);
-    });
-    document.getElementById("tasks").appendChild(taskDiv);
+    displayTasks(list.tasks);
   };
 
   return { clearLists,
@@ -91,6 +80,7 @@ export const display = (function () {
           closeListDialog,
           openTaskDialog,
           closeTaskDialog,
+          clearListDetail,
           displayListDetail,
   };
 })();

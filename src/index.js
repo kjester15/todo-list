@@ -64,8 +64,3 @@ function updateCurrentList(data) {
   currentList = data;
 }
 observable.subscribe(updateCurrentList);
-
-// observer TODO
-// create observer class = DONE
-// Add observer.notify to list button = DONE
-// Subscribe [task detail?] to observer
