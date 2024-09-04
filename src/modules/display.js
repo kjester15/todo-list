@@ -1,3 +1,5 @@
+import observable from "./observer";
+
 export const display = (function () {
   const clearLists = ()=> {
     document.getElementById("lists").innerHTML = "";
@@ -11,7 +13,8 @@ export const display = (function () {
       // newList.setAttribute("id", `list-${i}`);
       document.getElementById("lists").appendChild(newList);
       newList.addEventListener("click", () => {
-        displayListTasks(element);
+        displayListDetail(element);
+        observable.notify(element);
       });
     });
   };
@@ -23,11 +26,12 @@ export const display = (function () {
   const displayTasks = (array) => {
     array.forEach((element) => {
       const newTask = document.createElement("div");
+      newTask.innerHTML = `${element.title}`;
       // newTask.setAttribute("class", "task-tile");
       // newTask.setAttribute("id", `task-${i}`);
       document.getElementById("tasks").appendChild(newTask);
       // newTask.addEventListener("click", (event) => {
-        // GamePlay.processMove(event.target);
+        // yada yada;
       // });
     });
   };
@@ -42,9 +46,9 @@ export const display = (function () {
     closeDialog.close()
   };
 
-  const openTaskDialog = () => {
+  const openTaskDialog = (list) => {
     const dialog = document.getElementById("taskDialog")
-    dialog.showModal()
+    dialog.showModal(list)
   };
 
   const closeTaskDialog = () => {
@@ -52,9 +56,18 @@ export const display = (function () {
     closeDialog.close()
   };
 
-  const displayListTasks = (list) => {
+  const displayListDetail = (list) => {
     document.getElementById("list-name").innerHTML=`${list.title}`;
     document.getElementById("list-description").innerHTML=`${list.description}`;
+
+    // const header = document.getElementById("tasks-header")
+    // const newTaskButton = document.createElement('button');
+    // newTaskButton.innerHTML = 'New Task';
+    // newTaskButton.addEventListener("click", function() {
+    //   display.openTaskDialog(list);
+    // });
+    // header.appendChild(newTaskButton);
+
     const taskDiv = document.createElement('div');
     list.tasks.forEach((task) => {
       const taskTitle = document.createElement('h4');
@@ -75,6 +88,6 @@ export const display = (function () {
           closeListDialog,
           openTaskDialog,
           closeTaskDialog,
-          displayListTasks,
+          displayListDetail,
   };
 })();

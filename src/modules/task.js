@@ -7,7 +7,11 @@ class Task {
   }
 }
 
-export const addTask = (list, task) => {
-  const newTask = new Task(task.title, task.description);
-  list.tasks.push(newTask);
-};
+export const task = (function () {
+  const addTask = (list, task) => {
+    const newTask = new Task(task.title);
+    list.tasks.push(newTask);
+  };
+
+  return { addTask };
+})();
