@@ -18,3 +18,7 @@ header {
 .sidebar, .tasks {
   padding: 20px;
 }
+
+.task-tile {
+  display: flex;
+}

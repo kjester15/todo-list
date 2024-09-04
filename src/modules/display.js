@@ -10,7 +10,6 @@ export const display = (function () {
       const newList = document.createElement("button");
       newList.innerHTML = `${element.title}`;
       // newList.setAttribute("class", "list-name");
-      // newList.setAttribute("id", `list-${i}`);
       document.getElementById("lists").appendChild(newList);
       newList.addEventListener("click", () => {
         displayListDetail(element);
@@ -25,14 +24,18 @@ export const display = (function () {
 
   const displayTasks = (array) => {
     array.forEach((element) => {
-      const newTask = document.createElement("div");
-      newTask.innerHTML = `${element.title}`;
-      // newTask.setAttribute("class", "task-tile");
-      // newTask.setAttribute("id", `task-${i}`);
-      document.getElementById("tasks").appendChild(newTask);
+      const newTask = document.createElement("button");
+      newTask.setAttribute("class", "task-tile");
+      const checkBox = document.createElement("input");
+      checkBox.type = 'checkbox';
+      newTask.appendChild(checkBox);
+      const taskTitle = document.createElement("div");
+      taskTitle.innerHTML = `${element.title}`;
+      newTask.appendChild(taskTitle);
       // newTask.addEventListener("click", (event) => {
         // yada yada;
       // });
+      document.getElementById("tasks").appendChild(newTask);
     });
   };
 
