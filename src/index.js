@@ -7,7 +7,8 @@ import { display } from "./modules/display";
 import './style.css';
 
 // event handlers for closing list and task dialogues
-document.getElementById('closeList').addEventListener("click", display.closeListDialog);
+document.getElementById('closeNewList').addEventListener("click", display.closeNewListDialog);
+document.getElementById('closeEditList').addEventListener("click", display.closeEditListDialog);
 document.getElementById('closeTask').addEventListener("click", display.closeTaskDialog);
 
 // establishes user to save lists and tracker for currently selected list
@@ -17,23 +18,42 @@ let currentList;
 // event handlers for addings lists and tasks
 let newList = document.getElementById("new-list");
 newList.addEventListener("click", function() {
-  display.openListDialog();
+  display.openNewListDialog();
 });
 
-// Handle new list and task forms
-const listForm = document.getElementById("list-form");
-listForm.addEventListener("submit", (event) => {
+// Handle new list, edit list, and task forms
+const newListForm = document.getElementById("new-list-form");
+newListForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  new FormData(listForm);
+  new FormData(newListForm);
 });
 
-listForm.addEventListener("formdata", (event) => {
+newListForm.addEventListener("formdata", (event) => {
   const newList = {}
   const data = event.formData;
   data.forEach((value, key) => (newList[`${key}`] = value))
   list.addList(user, newList)
-  listForm.reset();
-  display.closeListDialog();
+  newListForm.reset();
+  display.closeNewListDialog();
+  display.clearLists();
+  display.displayLists(user.lists);
+});
+
+const editListForm = document.getElementById("edit-list-form");
+editListForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  new FormData(editListForm);
+});
+
+editListForm.addEventListener("formdata", (event) => {
+  const editList = {}
+  const data = event.formData;
+  data.forEach((value, key) => (editList[`${key}`] = value))
+  // if new then: 
+  // list.addList(user, newList)
+  // if edit then skip
+  editListForm.reset();
+  display.closeEditListDialog();
   display.clearLists();
   display.displayLists(user.lists);
 });
@@ -55,14 +75,16 @@ taskForm.addEventListener("formdata", (event) => {
   display.displayTasks(currentList.tasks);
 });
 
-// update current list with observer
+// observer functions
 function updateCurrentList(data) {
   currentList = data;
 };
 function mapButtons() {
   let editList = document.getElementById("edit-list");
   editList.addEventListener("click", function() {
-    console.log("hi!");
+    let index = user.lists.indexOf(currentList);
+    display.openEditListDialog();
+    display.displayListDetail(user.lists[index]);
   });
 
   let deleteList = document.getElementById("delete-list");

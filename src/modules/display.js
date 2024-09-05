@@ -65,24 +65,34 @@ export const display = (function () {
     document.getElementById("list-buttons").innerHTML = '';
   };
 
-  const openListDialog = () => {
-    const dialog = document.getElementById("listDialog")
-    dialog.showModal()
+  const openNewListDialog = () => {
+    const dialog = document.getElementById("newListDialog");
+    dialog.showModal();
   };
 
-  const closeListDialog = () => {
-    const closeDialog = document.getElementById("listDialog")
-    closeDialog.close()
+  const openEditListDialog = () => {
+    const dialog = document.getElementById("editListDialog");
+    dialog.showModal();
+  };
+
+  const closeNewListDialog = () => {
+    const closeDialog = document.getElementById("newListDialog");
+    closeDialog.close();
+  };
+
+  const closeEditListDialog = () => {
+    const closeDialog = document.getElementById("editListDialog");
+    closeDialog.close();
   };
 
   const openTaskDialog = (list) => {
-    const dialog = document.getElementById("taskDialog")
-    dialog.showModal(list)
+    const dialog = document.getElementById("taskDialog");
+    dialog.showModal(list);
   };
 
   const closeTaskDialog = () => {
-    const closeDialog = document.getElementById("taskDialog")
-    closeDialog.close()
+    const closeDialog = document.getElementById("taskDialog");
+    closeDialog.close();
   };
 
   const clearListDetail = () => {
@@ -96,11 +106,13 @@ export const display = (function () {
       document.getElementById("list-name").innerHTML='';
       document.getElementById("list-description").innerHTML='';
       clearButtons();
+      clearTasks();
     } else {
       document.getElementById("list-name").innerHTML=`${list.title}`;
       document.getElementById("list-description").innerHTML=`${list.description}`;
       clearButtons();
       displayButtons();
+      clearTasks();
       displayTasks(list.tasks);
     }
   };
@@ -111,8 +123,10 @@ export const display = (function () {
           displayTasks,
           displayButtons,
           clearButtons,
-          openListDialog,
-          closeListDialog,
+          openNewListDialog,
+          openEditListDialog,
+          closeNewListDialog,
+          closeEditListDialog,
           openTaskDialog,
           closeTaskDialog,
           clearListDetail,

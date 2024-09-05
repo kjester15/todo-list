@@ -27,9 +27,25 @@
       <div class="tasks-content" id="tasks"></div>
     </div>
   </div>
-  <dialog id="listDialog">
-    <form id="list-form" method="dialog" >
-      <button type="button" id="closeList">X</button><br><br>
+  <dialog id="newListDialog" class="center">
+    <div class="modal-header">
+      <button type="button" id="closeNewList">X</button><br><br>
+      <h3>New List</h3>
+    </div>
+    <form id="new-list-form" method="dialog" >
+      <label for="title">Title:</label><br>
+      <input type="text" id="title" name="title"><br><br>
+      <label for="description">Description:</label><br>
+      <input type="text" id="description" name="description"><br><br>
+      <button id="submit" type="submit">Create</button>
+    </form>
+  </dialog>
+  <dialog id="editListDialog" class="center">
+    <div class="modal-header">
+      <button type="button" id="closeEditList">X</button><br><br>
+      <h3>Edit List</h3>
+    </div>
+    <form id="edit-list-form" method="dialog" >
       <label for="title">Title:</label><br>
       <input type="text" id="title" name="title"><br><br>
       <label for="description">Description:</label><br>
