@@ -1,6 +1,7 @@
 import { task } from "./modules/task";
 import { list } from "./modules/list";
-import observable from "./modules/observer";
+import listObserver from "./modules/listObserver";
+import buttonObserver from "./modules/buttonObserver";
 import User from "./modules/user";
 import { display } from "./modules/display";
 import './style.css';
@@ -17,11 +18,6 @@ let currentList;
 let newList = document.getElementById("new-list");
 newList.addEventListener("click", function() {
   display.openListDialog();
-});
-
-let newTask = document.getElementById("new-task");
-newTask.addEventListener("click", function() {
-  display.openTaskDialog();
 });
 
 // Handle new list and task forms
@@ -59,8 +55,25 @@ taskForm.addEventListener("formdata", (event) => {
   display.displayTasks(currentList.tasks);
 });
 
-// update current list
+// update current list with observer
 function updateCurrentList(data) {
   currentList = data;
-}
-observable.subscribe(updateCurrentList);
+};
+function mapButtons() {
+  let editList = document.getElementById("edit-list");
+  editList.addEventListener("click", function() {
+    console.log("hi!");
+  });
+
+  let deleteList = document.getElementById("delete-list");
+  deleteList.addEventListener("click", function() {
+    let index = user.lists.indexOf(currentList);
+    user.lists.splice(index, 1);
+    display.clearLists();
+    display.displayLists(user.lists);
+    display.displayListDetail(user.lists[0]);
+    updateCurrentList(null);
+  });
+};
+listObserver.subscribe(updateCurrentList);
+buttonObserver.subscribe(mapButtons);

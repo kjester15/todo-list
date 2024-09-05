@@ -1,4 +1,5 @@
-import observable from "./observer";
+import listObserver from "./listObserver";
+import buttonObserver from "./buttonObserver";
 
 export const display = (function () {
   const clearLists = ()=> {
@@ -14,7 +15,7 @@ export const display = (function () {
       newList.addEventListener("click", () => {
         clearListDetail();
         displayListDetail(element);
-        observable.notify(element);
+        listObserver.notify(element);
       });
     });
   };
@@ -38,6 +39,30 @@ export const display = (function () {
       // });
       document.getElementById("tasks").appendChild(newTask);
     });
+  };
+
+  const displayButtons = () => {
+    const buttonsDiv = document.getElementById("list-buttons")
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
+    deleteButton.setAttribute("id", "delete-list");
+    buttonsDiv.appendChild(deleteButton);
+    const editButton = document.createElement("button");
+    editButton.innerHTML = "Edit";
+    editButton.setAttribute("id", "edit-list");
+    buttonsDiv.appendChild(editButton);
+    const newButton = document.createElement("button");
+    newButton.innerHTML = "New Task";
+    newButton.setAttribute("id", "new-task");
+    newButton.addEventListener("click", function() {
+      openTaskDialog();
+    });
+    buttonsDiv.appendChild(newButton);
+    buttonObserver.notify();
+  };
+
+  const clearButtons = () => {
+    document.getElementById("list-buttons").innerHTML = '';
   };
 
   const openListDialog = () => {
@@ -67,15 +92,25 @@ export const display = (function () {
   }
 
   const displayListDetail = (list) => {
-    document.getElementById("list-name").innerHTML=`${list.title}`;
-    document.getElementById("list-description").innerHTML=`${list.description}`;
-    displayTasks(list.tasks);
+    if(list == null) {
+      document.getElementById("list-name").innerHTML='';
+      document.getElementById("list-description").innerHTML='';
+      clearButtons();
+    } else {
+      document.getElementById("list-name").innerHTML=`${list.title}`;
+      document.getElementById("list-description").innerHTML=`${list.description}`;
+      clearButtons();
+      displayButtons();
+      displayTasks(list.tasks);
+    }
   };
 
   return { clearLists,
           displayLists,
           clearTasks,
           displayTasks,
+          displayButtons,
+          clearButtons,
           openListDialog,
           closeListDialog,
           openTaskDialog,

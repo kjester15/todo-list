@@ -1,4 +1,4 @@
-class Observable {
+class ButtonObservable {
   constructor() {
     this.observers = [];
   }
@@ -16,4 +16,4 @@ class Observable {
   }
 }
 
-export default new Observable();
+export default new ButtonObservable();
