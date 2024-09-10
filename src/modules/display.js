@@ -10,7 +10,7 @@ export const display = (function () {
     array.forEach((element) => {
       const newList = document.createElement("button");
       newList.innerHTML = `${element.title}`;
-      // newList.setAttribute("class", "list-name");
+      newList.setAttribute("class", "list-name");
       document.getElementById("lists").appendChild(newList);
       newList.addEventListener("click", () => {
         clearListDetail();

@@ -8,11 +8,62 @@ header {
   text-align: center;
   padding: 20px;
   background-color: rgb(239, 239, 239);
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  box-shadow: 1px 0px 2px;
 }
 
 .main {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  height: calc(100vh - 115px);
+}
+
+.sidebar {
+  max-width: 300px;
+  height: 100%;
+  background-color: rgb(247, 247, 247);
+  box-shadow: 0px 1px 2px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+#new-list {
+  border: none;
+  background: none;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+#new-list:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.list-name {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: rgb(220, 210, 255);
+  white-space: normal;
+  word-wrap: break-word;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 20px;
+  text-align: left;
+  transition: 0.4s;
+}
+
+.list-name:hover {
+  background-color: rgb(198, 183, 254);
 }
 
 .sidebar, .tasks {
