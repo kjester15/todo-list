@@ -32,4 +32,13 @@ header {
 
 .modal-header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+dialog {
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid;
 }
