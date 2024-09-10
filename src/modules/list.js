@@ -12,5 +12,12 @@ export const list = (function () {
     user.lists.push(newList);
   };
 
-  return { addList };
+  const editList = (user, updatedList, existingList) => {
+    const index = user.lists.indexOf(existingList);
+    const currentList = user.lists[index];
+    currentList.title = updatedList.title;
+    currentList.description = updatedList.description;
+  }
+
+  return { addList, editList };
 })();

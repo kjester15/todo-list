@@ -49,13 +49,12 @@ editListForm.addEventListener("formdata", (event) => {
   const editList = {}
   const data = event.formData;
   data.forEach((value, key) => (editList[`${key}`] = value))
-  // if new then: 
-  // list.addList(user, newList)
-  // if edit then skip
+  list.editList(user, editList, currentList)
   editListForm.reset();
   display.closeEditListDialog();
   display.clearLists();
   display.displayLists(user.lists);
+  display.displayListDetail(currentList);
 });
 
 const taskForm = document.getElementById("task-form");
@@ -83,6 +82,13 @@ function mapButtons() {
   let editList = document.getElementById("edit-list");
   editList.addEventListener("click", function() {
     let index = user.lists.indexOf(currentList);
+    let formIndex = 0;
+    for (const child of editListForm.children) {
+      if (child.nodeName === "INPUT") {
+        child.value = currentList[Object.keys(currentList)[formIndex]];
+        formIndex++;
+      }
+    };
     display.openEditListDialog();
     display.displayListDetail(user.lists[index]);
   });
