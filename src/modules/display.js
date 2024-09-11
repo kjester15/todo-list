@@ -49,19 +49,19 @@ export const display = (function () {
 
   const displayButtons = () => {
     const buttonsDiv = document.getElementById("list-buttons")
-    const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("id", "delete-list");
-    buttonsDiv.appendChild(deleteButton);
-    const editButton = document.createElement("button");
-    editButton.setAttribute("id", "edit-list");
-    buttonsDiv.appendChild(editButton);
     const newButton = document.createElement("button");
     newButton.innerHTML = "New Task";
     newButton.setAttribute("id", "new-task");
-    newButton.addEventListener("click", function() {
-      openTaskDialog();
-    });
+    // newButton.addEventListener("click", function() {
+    //   openTaskDialog();
+    // });
     buttonsDiv.appendChild(newButton);
+    const editButton = document.createElement("button");
+    editButton.setAttribute("id", "edit-list");
+    buttonsDiv.appendChild(editButton);
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("id", "delete-list");
+    buttonsDiv.appendChild(deleteButton);
     buttonObserver.notify();
   };
 

@@ -39,7 +39,9 @@ header {
   padding: 5px;
   border-radius: 5px;
   transition: 0.3s;
+  margin: 5px;
 }
+
 
 #new-list:hover, #new-task:hover {
   background-color: rgb(225, 225, 225);
@@ -79,6 +81,7 @@ header {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  justify-content: space-between;
 }
 
 #list-buttons {
@@ -173,3 +176,7 @@ dialog {
   border-radius: 3px;
   border: 1px solid;
 }
+
+/* .completed {
+  text-decoration: line-through;
+} */
