@@ -44,11 +44,9 @@ export const display = (function () {
   const displayButtons = () => {
     const buttonsDiv = document.getElementById("list-buttons")
     const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = "Delete";
     deleteButton.setAttribute("id", "delete-list");
     buttonsDiv.appendChild(deleteButton);
     const editButton = document.createElement("button");
-    editButton.innerHTML = "Edit";
     editButton.setAttribute("id", "edit-list");
     buttonsDiv.appendChild(editButton);
     const newButton = document.createElement("button");
