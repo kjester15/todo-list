@@ -16,13 +16,11 @@ header {
 
 .main {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   height: calc(100vh - 115px);
 }
 
 .sidebar {
-  /* max-width: 300px; */
-  height: 100%;
   background-color: rgb(247, 247, 247);
   box-shadow: 0px 1px 2px rgb(156, 156, 156);
 }
@@ -68,6 +66,7 @@ header {
 
 .sidebar, .tasks {
   padding: 20px;
+  height: 100%;
 }
 
 .tasks-header {
@@ -126,8 +125,28 @@ header {
   font-weight: 400;
 }
 
+.task-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
 .task-tile {
   display: flex;
+  height: auto;
+  width: 75%;
+  border: none;
+  box-shadow: 1px 1px 2px rgb(156, 156, 156);
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+button > input {
+  margin-right: 10px;
 }
 
 .center {
