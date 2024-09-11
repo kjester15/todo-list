@@ -28,12 +28,18 @@ export const display = (function () {
     array.forEach((element) => {
       const newTask = document.createElement("button");
       newTask.setAttribute("class", "task-tile");
+      const mainTaskContent = document.createElement("div");
+      mainTaskContent.setAttribute("class", "task-tile-content")
+      newTask.appendChild(mainTaskContent);
       const checkBox = document.createElement("input");
       checkBox.type = 'checkbox';
-      newTask.appendChild(checkBox);
+      mainTaskContent.appendChild(checkBox);
       const taskTitle = document.createElement("div");
       taskTitle.innerHTML = `${element.title}`;
-      newTask.appendChild(taskTitle);
+      mainTaskContent.appendChild(taskTitle);
+      const taskDelete = document.createElement("button");
+      taskDelete.setAttribute("id", "delete-task");
+      newTask.appendChild(taskDelete);
       // newTask.addEventListener("click", (event) => {
         // yada yada;
       // });

@@ -91,23 +91,23 @@ header {
   margin-right: 5px;
 }
 
-#delete-list {
+#delete-list, #delete-task {
   background: url("./img/delete-outline.svg") no-repeat center;
   transition: 0.3s;
-  height: 25px;
-  width: 25px;
+  min-height: 25px;
+  min-width: 25px;
   border: none;
 }
 
-#delete-list:hover {
+#delete-list:hover, #delete-task:hover {
   background: url("./img/delete.svg") no-repeat center;
 }
 
 #edit-list {
   background: url("./img/pencil-outline.svg") no-repeat center;
   transition: 0.3s;
-  height: 25px;
-  width: 25px;
+  min-height: 25px;
+  min-width: 25px;
   border: none;
 }
 
@@ -143,9 +143,14 @@ header {
   padding: 10px;
   margin: 10px;
   font-size: 16px;
+  justify-content: space-between;
 }
 
-button > input {
+.task-tile-content {
+  display: flex;
+}
+
+button > div > input {
   margin-right: 10px;
 }
 
