@@ -28,6 +28,7 @@ export const display = (function () {
     array.forEach((element) => {
       const newTask = document.createElement("button");
       newTask.setAttribute("class", "task-tile");
+      newTask.setAttribute("id", `priority-${element.priority}`)
       const mainTaskContent = document.createElement("div");
       mainTaskContent.setAttribute("class", "task-tile-content")
       newTask.appendChild(mainTaskContent);

@@ -9,7 +9,7 @@ class Task {
 
 export const task = (function () {
   const addTask = (list, task) => {
-    const newTask = new Task(task.title);
+    const newTask = new Task(task.title, task.date, task.priority, task.note);
     list.tasks.push(newTask);
   };
 
