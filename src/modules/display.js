@@ -52,9 +52,9 @@ export const display = (function () {
     const newButton = document.createElement("button");
     newButton.innerHTML = "New Task";
     newButton.setAttribute("id", "new-task");
-    // newButton.addEventListener("click", function() {
-    //   openTaskDialog();
-    // });
+    newButton.addEventListener("click", function() {
+      openTaskDialog();
+    });
     buttonsDiv.appendChild(newButton);
     const editButton = document.createElement("button");
     editButton.setAttribute("id", "edit-list");
