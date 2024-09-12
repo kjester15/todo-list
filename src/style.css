@@ -162,6 +162,14 @@ header {
   flex-direction: column;
 }
 
+h4 {
+  font-weight: 500;
+}
+
+.task-date {
+  font-size: 12px;
+}
+
 button > div > input {
   margin-right: 10px;
 }
