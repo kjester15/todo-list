@@ -159,6 +159,7 @@ header {
 
 .task-tile-content {
   display: flex;
+  flex-direction: column;
 }
 
 button > div > input {

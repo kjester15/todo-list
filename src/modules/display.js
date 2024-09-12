@@ -29,15 +29,18 @@ export const display = (function () {
       const newTask = document.createElement("button");
       newTask.setAttribute("class", "task-tile");
       newTask.setAttribute("id", `priority-${element.priority}`)
+      const checkBox = document.createElement("input");
+      checkBox.type = 'checkbox';
+      newTask.appendChild(checkBox);
       const mainTaskContent = document.createElement("div");
       mainTaskContent.setAttribute("class", "task-tile-content")
       newTask.appendChild(mainTaskContent);
-      const checkBox = document.createElement("input");
-      checkBox.type = 'checkbox';
-      mainTaskContent.appendChild(checkBox);
       const taskTitle = document.createElement("div");
       taskTitle.innerHTML = `${element.title}`;
       mainTaskContent.appendChild(taskTitle);
+      const taskDate = document.createElement("div");
+      taskDate.innerHTML = `${element.date}`;
+      mainTaskContent.appendChild(taskDate);
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
       newTask.appendChild(taskDelete);
