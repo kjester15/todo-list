@@ -1,5 +1,6 @@
 import listObserver from "./listObserver";
 import buttonObserver from "./buttonObserver";
+import { format } from "date-fns";
 
 export const display = (function () {
   const clearLists = ()=> {
@@ -39,7 +40,8 @@ export const display = (function () {
       taskTitle.innerHTML = `${element.title}`;
       mainTaskContent.appendChild(taskTitle);
       const taskDate = document.createElement("div");
-      taskDate.innerHTML = `${element.date}`;
+      let date = element.date.split("-").join("/");
+      taskDate.innerHTML = format(new Date(date), "MM/dd/yyyy");
       mainTaskContent.appendChild(taskDate);
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
