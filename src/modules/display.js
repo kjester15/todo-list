@@ -38,12 +38,14 @@ export const display = (function () {
       newTask.appendChild(mainTaskContent);
       const taskTitle = document.createElement("h4");
       taskTitle.innerHTML = `${element.title}`;
+      taskTitle.setAttribute("class", "text-right");
       mainTaskContent.appendChild(taskTitle);
       const taskDate = document.createElement("div");
       const formattedDate = element.date.split("-").join("/");
       const newDate = format(new Date(formattedDate), "MM/dd/yyyy");
       taskDate.innerHTML = `Due: ${newDate}`;
-      taskDate.setAttribute("class", "task-date");
+      taskDate.setAttribute("id", "task-date");
+      taskDate.setAttribute("class", "text-right");
       mainTaskContent.appendChild(taskDate);
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
