@@ -1,5 +1,6 @@
 import listObserver from "./listObserver";
 import buttonObserver from "./buttonObserver";
+import taskObserver from "./taskObserver";
 import { format } from "date-fns";
 
 export const display = (function () {
@@ -25,8 +26,8 @@ export const display = (function () {
     document.getElementById("tasks").innerHTML = "";
   };
 
-  const displayTasks = (array) => {
-    array.forEach((element) => {
+  const displayTasks = (list) => {
+    list.tasks.forEach((element) => {
       const newTask = document.createElement("button");
       newTask.setAttribute("class", "task-tile");
       newTask.setAttribute("id", `priority-${element.priority}`)
@@ -49,6 +50,12 @@ export const display = (function () {
       mainTaskContent.appendChild(taskDate);
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
+      taskDelete.addEventListener("click", () => {
+        let index = list.tasks.indexOf(element);
+        list.tasks.splice(index, 1);
+        clearTasks();
+        displayTasks(list);
+      })
       newTask.appendChild(taskDelete);
       // newTask.addEventListener("click", (event) => {
         // yada yada;
@@ -127,7 +134,7 @@ export const display = (function () {
       clearButtons();
       displayButtons();
       clearTasks();
-      displayTasks(list.tasks);
+      displayTasks(list);
     }
   };
 
