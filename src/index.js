@@ -2,7 +2,6 @@ import { task } from "./modules/task";
 import { list } from "./modules/list";
 import listObserver from "./modules/listObserver";
 import buttonObserver from "./modules/buttonObserver";
-import taskObserver from "./modules/taskObserver";
 import User from "./modules/user";
 import { display } from "./modules/display";
 import './style.css';
@@ -104,15 +103,5 @@ function mapButtons() {
     updateCurrentList(null);
   });
 };
-// function mapTask(task) {
-//   let deleteTask = document.getElementById("delete-task");
-//   deleteTask.addEventListener("click", function() {
-//     let index = currentList.tasks.indexOf(task);
-//     currentList.tasks.splice(index, 1);
-//     display.clearTasks();
-//     display.displayTasks(currentList.tasks);
-//   });
-// }
 listObserver.subscribe(updateCurrentList);
 buttonObserver.subscribe(mapButtons);
-// taskObserver.subscribe(mapTask);
