@@ -52,13 +52,13 @@
       <input type="text" id="title" name="title" required><br><br>
       <label for="description">Description:</label><br>
       <input type="text" id="description" name="description"><br><br>
-      <button id="submit" type="submit">Create</button>
+      <button id="submit" type="submit">Save</button>
     </form>
   </dialog>
-  <dialog id="taskDialog" class="center">
+  <dialog id="newTaskDialog" class="center">
     <div class="modal-header">
       <h3>New Task</h3>
-      <button type="button" id="closeTask">X</button>
+      <button type="button" id="closeNewTask">X</button>
     </div>
     <form id="task-form" method="dialog" >
       <label for="title">Title:</label><br>
@@ -74,6 +74,27 @@
       <label for="note">Note:</label><br>
       <input type="text" id="note" name="note"><br><br>
       <button id="submit" type="submit">Create</button>
+    </form>
+  </dialog>
+  <dialog id="editTaskDialog" class="center">
+    <div class="modal-header">
+      <h3>Edit Task</h3>
+      <button type="button" id="closeEditTask">X</button>
+    </div>
+    <form id="edit-task-form" method="dialog" >
+      <label for="title">Title:</label><br>
+      <input type="text" id="title" name="title" required><br><br>
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date" required><br><br>
+      <label for="priority">Priority:</label><br>
+      <select id="priority" name="priority" required>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select><br><br>
+      <label for="note">Note:</label><br>
+      <input type="text" id="note" name="note"><br><br>
+      <button id="submit" type="submit">Save</button>
     </form>
   </dialog>
 </body>

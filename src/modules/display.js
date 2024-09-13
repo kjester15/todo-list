@@ -1,6 +1,6 @@
 import listObserver from "./listObserver";
-import buttonObserver from "./buttonObserver";
 import taskObserver from "./taskObserver";
+import buttonObserver from "./buttonObserver";
 import { format } from "date-fns";
 
 export const display = (function () {
@@ -28,7 +28,7 @@ export const display = (function () {
 
   const displayTasks = (list) => {
     list.tasks.forEach((element) => {
-      const newTask = document.createElement("button");
+      const newTask = document.createElement("div");
       newTask.setAttribute("class", "task-tile");
       newTask.setAttribute("id", `priority-${element.priority}`)
       const checkBox = document.createElement("input");
@@ -50,16 +50,18 @@ export const display = (function () {
       mainTaskContent.appendChild(taskDate);
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
-      taskDelete.addEventListener("click", () => {
+      taskDelete.addEventListener("click", (event) => {
         let index = list.tasks.indexOf(element);
         list.tasks.splice(index, 1);
         clearTasks();
         displayTasks(list);
+        event.stopPropagation();
       })
       newTask.appendChild(taskDelete);
-      // newTask.addEventListener("click", (event) => {
-        // yada yada;
-      // });
+      newTask.addEventListener("click", () => {
+        taskObserver.notify(element);
+        openEditTaskDialog(element);
+      });
       document.getElementById("tasks").appendChild(newTask);
     });
   };
@@ -70,7 +72,7 @@ export const display = (function () {
     newButton.innerHTML = "New Task";
     newButton.setAttribute("id", "new-task");
     newButton.addEventListener("click", function() {
-      openTaskDialog();
+      openNewTaskDialog();
     });
     buttonsDiv.appendChild(newButton);
     const editButton = document.createElement("button");
@@ -106,13 +108,23 @@ export const display = (function () {
     closeDialog.close();
   };
 
-  const openTaskDialog = (list) => {
-    const dialog = document.getElementById("taskDialog");
+  const openNewTaskDialog = (list) => {
+    const dialog = document.getElementById("newTaskDialog");
     dialog.showModal(list);
   };
 
-  const closeTaskDialog = () => {
-    const closeDialog = document.getElementById("taskDialog");
+  const closeNewTaskDialog = () => {
+    const closeDialog = document.getElementById("newTaskDialog");
+    closeDialog.close();
+  };
+
+  const openEditTaskDialog = (list) => {
+    const dialog = document.getElementById("editTaskDialog");
+    dialog.showModal(list);
+  };
+
+  const closeEditTaskDialog = () => {
+    const closeDialog = document.getElementById("editTaskDialog");
     closeDialog.close();
   };
 
@@ -148,8 +160,10 @@ export const display = (function () {
           openEditListDialog,
           closeNewListDialog,
           closeEditListDialog,
-          openTaskDialog,
-          closeTaskDialog,
+          openNewTaskDialog,
+          closeNewTaskDialog,
+          openEditTaskDialog,
+          closeEditTaskDialog,
           clearListDetail,
           displayListDetail,
   };

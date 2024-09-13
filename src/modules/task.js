@@ -13,5 +13,13 @@ export const task = (function () {
     list.tasks.push(newTask);
   };
 
-  return { addTask };
+  const editTask = (existingTask, updatedTask, currentList) => {
+    const index = currentList.tasks.indexOf(existingTask);
+    currentList.tasks[index].title = updatedTask.title;
+    currentList.tasks[index].date = updatedTask.date;
+    currentList.tasks[index].priority = updatedTask.priority;
+    currentList.tasks[index].note = updatedTask.note;
+  }
+
+  return { addTask, editTask };
 })();

@@ -1,6 +1,7 @@
 import { task } from "./modules/task";
 import { list } from "./modules/list";
 import listObserver from "./modules/listObserver";
+import taskObserver from "./modules/taskObserver";
 import buttonObserver from "./modules/buttonObserver";
 import User from "./modules/user";
 import { display } from "./modules/display";
@@ -9,11 +10,13 @@ import './style.css';
 // event handlers for closing list and task dialogues
 document.getElementById('closeNewList').addEventListener("click", display.closeNewListDialog);
 document.getElementById('closeEditList').addEventListener("click", display.closeEditListDialog);
-document.getElementById('closeTask').addEventListener("click", display.closeTaskDialog);
+document.getElementById('closeNewTask').addEventListener("click", display.closeNewTaskDialog);
+document.getElementById('closeEditTask').addEventListener("click", display.closeEditTaskDialog);
 
 // establishes user to save lists and tracker for currently selected list
 const user = new User;
 let currentList;
+let currentTask;
 
 // event handlers for addings lists and tasks
 let newList = document.getElementById("new-list");
@@ -57,19 +60,36 @@ editListForm.addEventListener("formdata", (event) => {
   display.displayListDetail(currentList);
 });
 
-const taskForm = document.getElementById("task-form");
-taskForm.addEventListener("submit", (event) => {
+const newTaskForm = document.getElementById("task-form");
+newTaskForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  new FormData(taskForm);
+  new FormData(newTaskForm);
 });
 
-taskForm.addEventListener("formdata", (event) => {
+newTaskForm.addEventListener("formdata", (event) => {
   const newTask = {}
   const data = event.formData;
   data.forEach((value, key) => (newTask[`${key}`] = value))
   task.addTask(currentList, newTask);
-  taskForm.reset();
-  display.closeTaskDialog();
+  newTaskForm.reset();
+  display.closeNewTaskDialog();
+  display.clearTasks();
+  display.displayTasks(currentList);
+});
+
+const editTaskForm = document.getElementById("edit-task-form");
+editTaskForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  new FormData(editTaskForm);
+});
+
+editTaskForm.addEventListener("formdata", (event) => {
+  const editTask = {}
+  const data = event.formData;
+  data.forEach((value, key) => (editTask[`${key}`] = value))
+  task.editTask(currentTask, editTask, currentList)
+  editTaskForm.reset();
+  display.closeEditTaskDialog();
   display.clearTasks();
   display.displayTasks(currentList);
 });
@@ -77,6 +97,9 @@ taskForm.addEventListener("formdata", (event) => {
 // observer functions
 function updateCurrentList(data) {
   currentList = data;
+};
+function updateCurrentTask(data) {
+  currentTask = data;
 };
 function mapButtons() {
   let editList = document.getElementById("edit-list");
@@ -104,4 +127,5 @@ function mapButtons() {
   });
 };
 listObserver.subscribe(updateCurrentList);
+taskObserver.subscribe(updateCurrentTask);
 buttonObserver.subscribe(mapButtons);
