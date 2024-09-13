@@ -61,6 +61,18 @@ export const display = (function () {
       newTask.addEventListener("click", () => {
         taskObserver.notify(element);
         openEditTaskDialog(element);
+        const form = document.getElementById("edit-task-form");
+        for (const child of form.children) {
+          if (child.id == "title") {
+            child.value = element.title;
+          } else if (child.id == "date") {
+            child.value = element.date;
+          } else if (child.id == "priority") {
+            child.value = element.priority;
+          } else if (child.id == "note") {
+            child.value = element.note;
+          }
+        };
       });
       document.getElementById("tasks").appendChild(newTask);
     });
