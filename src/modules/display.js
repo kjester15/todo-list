@@ -50,6 +50,7 @@ export const display = (function () {
       taskDate.setAttribute("class", "text-right");
       mainTaskContent.appendChild(taskDate);
       if (element.status == "true") {
+        checkBox.checked = true;
         taskTitle.classList.toggle("completed");
         taskDate.classList.toggle("completed");
       }
