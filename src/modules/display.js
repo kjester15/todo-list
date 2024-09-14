@@ -48,6 +48,11 @@ export const display = (function () {
       taskDate.setAttribute("id", "task-date");
       taskDate.setAttribute("class", "text-right");
       mainTaskContent.appendChild(taskDate);
+      checkBox.addEventListener("click", (event) => {
+        taskTitle.classList.toggle("completed");
+        taskDate.classList.toggle("completed");
+        event.stopPropagation();
+      })
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
       taskDelete.addEventListener("click", (event) => {

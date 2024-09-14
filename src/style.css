@@ -212,6 +212,6 @@ dialog {
   background-color: rgb(255, 201, 200);
 }
 
-/* .completed {
+.completed {
   text-decoration: line-through;
-} */
+}
