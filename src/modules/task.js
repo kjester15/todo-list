@@ -1,9 +1,10 @@
 class Task {
-  constructor(title, date, priority, note) {
+  constructor(title, date, priority, note, status) {
     this.title = title;
     this.date = date;
     this.priority = priority;
     this.note = note;
+    this.status = status;
   }
 }
 
@@ -19,6 +20,7 @@ export const task = (function () {
     currentList.tasks[index].date = updatedTask.date;
     currentList.tasks[index].priority = updatedTask.priority;
     currentList.tasks[index].note = updatedTask.note;
+    currentList.tasks[index].status = updatedTask.status;
   }
 
   return { addTask, editTask };

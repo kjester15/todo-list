@@ -27,6 +27,7 @@ export const display = (function () {
   };
 
   const displayTasks = (list) => {
+    
     list.tasks.forEach((element) => {
       const newTask = document.createElement("div");
       newTask.setAttribute("class", "task-tile");
@@ -48,9 +49,20 @@ export const display = (function () {
       taskDate.setAttribute("id", "task-date");
       taskDate.setAttribute("class", "text-right");
       mainTaskContent.appendChild(taskDate);
+      if (element.status == "true") {
+        taskTitle.classList.toggle("completed");
+        taskDate.classList.toggle("completed");
+      }
       checkBox.addEventListener("click", (event) => {
         taskTitle.classList.toggle("completed");
         taskDate.classList.toggle("completed");
+        if (element.status == "true") {
+          element.status = "false";
+        } else {
+          element.status = "true";
+        }
+        clearTasks();
+        displayTasks(list);
         event.stopPropagation();
       })
       const taskDelete = document.createElement("button");
@@ -76,6 +88,8 @@ export const display = (function () {
             child.value = element.priority;
           } else if (child.id == "note") {
             child.value = element.note;
+          } else if (child.id == "status") {
+            child.value = element.status;
           }
         };
       });
