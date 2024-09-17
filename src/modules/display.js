@@ -1,6 +1,7 @@
 import listObserver from "./listObserver";
 import taskObserver from "./taskObserver";
 import buttonObserver from "./buttonObserver";
+import saveObserver from "./saveObserver";
 import { format } from "date-fns";
 
 export const display = (function () {
@@ -65,6 +66,7 @@ export const display = (function () {
         clearTasks();
         displayTasks(list);
         event.stopPropagation();
+        saveObserver.notify();
       })
       const taskDelete = document.createElement("button");
       taskDelete.setAttribute("id", "delete-task");
@@ -74,6 +76,7 @@ export const display = (function () {
         clearTasks();
         displayTasks(list);
         event.stopPropagation();
+        saveObserver.notify();
       })
       newTask.appendChild(taskDelete);
       newTask.addEventListener("click", () => {

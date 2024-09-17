@@ -3,6 +3,7 @@ import { list } from "./modules/list";
 import listObserver from "./modules/listObserver";
 import taskObserver from "./modules/taskObserver";
 import buttonObserver from "./modules/buttonObserver";
+import saveObserver from "./modules/saveObserver";
 import User from "./modules/user";
 import { display } from "./modules/display";
 import './style.css';
@@ -14,9 +15,23 @@ document.getElementById('closeNewTask').addEventListener("click", display.closeN
 document.getElementById('closeEditTask').addEventListener("click", display.closeEditTaskDialog);
 
 // establishes user to save lists and tracker for currently selected list
-const user = new User;
+let user = new User;
+let userSaveData;
 let currentList;
 let currentTask;
+
+// look for saved data when page is opened
+function restoreData() {
+  let userSaveStr = localStorage.getItem("userSaveData");
+  if (userSaveStr !== null) {
+    user = JSON.parse(userSaveStr);
+    display.displayLists(user.lists);
+  }
+};
+
+window.addEventListener("load", () => {
+  restoreData();
+});
 
 // event handlers for addings lists and tasks
 let newList = document.getElementById("new-list");
@@ -40,6 +55,7 @@ newListForm.addEventListener("formdata", (event) => {
   display.closeNewListDialog();
   display.clearLists();
   display.displayLists(user.lists);
+  saveObserver.notify();
 });
 
 const editListForm = document.getElementById("edit-list-form");
@@ -58,6 +74,7 @@ editListForm.addEventListener("formdata", (event) => {
   display.clearLists();
   display.displayLists(user.lists);
   display.displayListDetail(currentList);
+  saveObserver.notify();
 });
 
 const newTaskForm = document.getElementById("task-form");
@@ -75,6 +92,7 @@ newTaskForm.addEventListener("formdata", (event) => {
   display.closeNewTaskDialog();
   display.clearTasks();
   display.displayTasks(currentList);
+  saveObserver.notify();
 });
 
 const editTaskForm = document.getElementById("edit-task-form");
@@ -92,6 +110,7 @@ editTaskForm.addEventListener("formdata", (event) => {
   display.closeEditTaskDialog();
   display.clearTasks();
   display.displayTasks(currentList);
+  saveObserver.notify();
 });
 
 // observer functions
@@ -124,8 +143,17 @@ function mapButtons() {
     display.displayLists(user.lists);
     display.displayListDetail(user.lists[0]);
     updateCurrentList(null);
+    saveObserver.notify();
   });
+};
+// save todo list
+function saveData() {
+  userSaveData = JSON.stringify(user)
+  localStorage.setItem("userSaveData", userSaveData)
 };
 listObserver.subscribe(updateCurrentList);
 taskObserver.subscribe(updateCurrentTask);
 buttonObserver.subscribe(mapButtons);
+saveObserver.subscribe(saveData);
+
+// need to save after delete lists or tasks
