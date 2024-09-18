@@ -55,7 +55,7 @@ In this project, I utilized modules and observers heavily for the first time. I 
 Live project can be found here: https://kjester15.github.io/todo-list/
 
 
-[product-screenshot]
+[![Product Name Screen Shot][product-screenshot]]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
