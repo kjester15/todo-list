@@ -9,8 +9,6 @@
   <p align="center">
     A simple todo list app built with JavaScript. Create lists and tasks, assign due dates and priority, and visualize it intuitively.
     <br />
-    <a href="https://github.com/kjester15/todo-list"><strong>Explore the docs »</strong></a>
-    <br />
   </p>
 </div>
 
@@ -26,7 +24,6 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
